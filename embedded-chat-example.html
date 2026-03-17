@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Chat Embedado - Parlant</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+            align-items: start;
+        }
+        
+        .info {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .chat-container {
+            position: sticky;
+            top: 20px;
+        }
+        
+        /* Chat Widget Styles */
+        #parlant-chat-widget {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: #f8f9fa;
+        }
+        
+        .chat-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #006E54;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,110,84,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0,110,84,0.4);
+        }
+        
+        .floating-chat {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 380px;
+            height: 500px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 999;
+            overflow: hidden;
+        }
+        
+        .floating-chat.active {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-chat {
+                width: calc(100vw - 40px);
+                height: 70vh;
+                bottom: 90px;
+                right: 20px;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Chat Embedado com Parlant</h1>
+        
+        <div class="content">
+            <div class="info">
+                <h2>Sobre este exemplo</h2>
+                <p>Este é um exemplo de como integrar o chat do Parlant em seu site. O chat pode ser usado de duas formas:</p>
+                
+                <h3>1. Chat Inline (ao lado)</h3>
+                <p>O chat aparece diretamente na página, integrado ao layout do seu site.</p>
+                
+                <h3>2. Chat Flutuante (botão no canto)</h3>
+                <p>Um botão flutuante que abre o chat em uma janela modal. Clique no botão verde no canto inferior direito para testar.</p>
+                
+                <h3>Recursos do Chat:</h3>
+                <ul>
+                    <li>Interface moderna e responsiva</li>
+                    <li>Integração com API do Parlant</li>
+                    <li>Suporte a múltiplas sessões</li>
+                    <li>Histórico de conversas</li>
+                    <li>Agentes especializados (como o Dr. CLT)</li>
+                </ul>
+                
+                <h3>Como integrar:</h3>
+                <ol>
+                    <li>Certifique-se que o servidor Parlant está rodando</li>
+                    <li>Configure a URL base da API</li>
+                    <li>Inclua o iframe ou componente React</li>
+                    <li>Personalize o estilo conforme necessário</li>
+                </ol>
+            </div>
+            
+            <div class="chat-container">
+                <iframe 
+                    id="parlant-chat-widget"
+                    src="http://localhost:8800/chat"
+                    title="Parlant Chat">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Chat Flutuante -->
+    <div id="floating-chat" class="floating-chat">
+        <iframe 
+            src="http://localhost:8800/chat"
+            width="100%" 
+            height="100%" 
+            frameborder="0"
+            title="Parlant Chat Flutuante">
+        </iframe>
+    </div>
+    
+    <!-- Botão Toggle -->
+    <button id="chat-toggle" class="chat-toggle" onclick="toggleChat()">
+        💬
+    </button>
+    
+    <script>
+        let chatOpen = false;
+        
+        function toggleChat() {
+            const floatingChat = document.getElementById('floating-chat');
+            const toggleButton = document.getElementById('chat-toggle');
+            
+            if (chatOpen) {
+                floatingChat.classList.remove('active');
+                toggleButton.innerHTML = '💬';
+                chatOpen = false;
+            } else {
+                floatingChat.classList.add('active');
+                toggleButton.innerHTML = '✕';
+                chatOpen = true;
+            }
+        }
+        
+        // Fechar chat ao clicar fora
+        document.addEventListener('click', function(event) {
+            const floatingChat = document.getElementById('floating-chat');
+            const toggleButton = document.getElementById('chat-toggle');
+            
+            if (chatOpen && 
+                !floatingChat.contains(event.target) && 
+                !toggleButton.contains(event.target)) {
+                toggleChat();
+            }
+        });
+        
+        // Verificar se o servidor está rodando
+        function checkParlantServer() {
+            fetch('http://localhost:8800/health')
+                .then(response => {
+                    if (response.ok) {
+                        console.log('✅ Servidor Parlant conectado');
+                    }
+                })
+                .catch(error => {
+                    console.warn('⚠️ Servidor Parlant não encontrado. Certifique-se que está rodando na porta 8800');
+                    
+                    // Mostrar mensagem de erro nos iframes
+                    const iframes = document.querySelectorAll('iframe');
+                    iframes.forEach(iframe => {
+                        iframe.style.background = '#f8f9fa';
+                        iframe.style.display = 'flex';
+                        iframe.style.alignItems = 'center';
+                        iframe.style.justifyContent = 'center';
+                    });
+                });
+        }
+        
+        // Verificar servidor ao carregar
+        window.addEventListener('load', checkParlantServer);
+    </script>
+</body>
+</html>

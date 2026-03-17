@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Assistant - Teste Simples</title>
+    
+    <!-- React e ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Parlant Chat React Component -->
+    <script src="https://unpkg.com/parlant-chat-react@latest/dist/index.js"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            text-align: center;
+            color: white;
+            max-width: 600px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .floating-chat {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏥 Health Assistant</h1>
+        <p>Assistente Virtual de Saúde - Teste Simples</p>
+        <p>Clique no botão de chat no canto inferior direito para começar!</p>
+    </div>
+
+    <!-- Parlant Chat Widget -->
+    <div class="chat-container">
+        <div id="parlant-chat" class="floating-chat"></div>
+    </div>
+
+    <script>
+        // Configuração do Parlant Chat
+        const { ParlantChatbox } = window.ParlantChatReact;
+        
+        // Renderizar o componente de chat
+        ReactDOM.render(
+            React.createElement(ParlantChatbox, {
+                agentId: "healthcare-agent", // ID do agente de saúde
+                server: "http://localhost:8800", // URL do servidor Parlant
+                float: true,
+                popupButton: React.createElement('button', {
+                    style: {
+                        backgroundColor: '#4F46E5',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '50%',
+                        width: '60px',
+                        height: '60px',
+                        fontSize: '24px',
+                        cursor: 'pointer',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+                        transition: 'all 0.3s ease'
+                    },
+                    onMouseOver: function(e) {
+                        e.target.style.transform = 'scale(1.1)';
+                        e.target.style.backgroundColor = '#3730A3';
+                    },
+                    onMouseOut: function(e) {
+                        e.target.style.transform = 'scale(1)';
+                        e.target.style.backgroundColor = '#4F46E5';
+                    }
+                }, '🏥')
+            }),
+            document.getElementById('parlant-chat')
+        );
+    </script>
+</body>
+</html>

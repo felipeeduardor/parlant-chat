@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. CLT - Advogado Trabalhista Virtual</title>
+    <meta name="description" content="Consultoria trabalhista especializada em CLT brasileira. Tire suas dúvidas sobre direitos trabalhistas com nosso advogado virtual.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React e ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Parlant Chat React Component -->
+    <script src="https://unpkg.com/parlant-chat-react@latest/dist/index.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .floating-chat {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg hero-pattern text-white">
+        <div class="container mx-auto px-6 py-16">
+            <div class="text-center">
+                <h1 class="text-5xl font-bold mb-4">
+                    ⚖️ Dr. CLT
+                </h1>
+                <p class="text-xl mb-2">Advogado Trabalhista Virtual</p>
+                <p class="text-lg opacity-90 mb-8">
+                    Especialista em Direito do Trabalho Brasileiro
+                </p>
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 max-w-2xl mx-auto">
+                    <p class="text-lg">
+                        Consultoria trabalhista baseada na <strong>CLT oficial</strong> do Senado Federal, 
+                        jurisprudência do TST e legislação atualizada.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- Services Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+                Como Posso Te Ajudar?
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-4xl mb-4">📋</div>
+                    <h3 class="text-xl font-semibold mb-3">Consulta à CLT</h3>
+                    <p class="text-gray-600">
+                        Consulte artigos específicos da Consolidação das Leis do Trabalho 
+                        diretamente do documento oficial do Senado Federal.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-4xl mb-4">💰</div>
+                    <h3 class="text-xl font-semibold mb-3">Cálculo de Rescisão</h3>
+                    <p class="text-gray-600">
+                        Calcule verbas rescisórias baseado na legislação vigente: 
+                        FGTS, aviso prévio, férias, 13º salário e mais.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                    <div class="text-4xl mb-4">⏰</div>
+                    <h3 class="text-xl font-semibold mb-3">Prazos Legais</h3>
+                    <p class="text-gray-600">
+                        Verifique prazos prescricionais e decadenciais para 
+                        diferentes tipos de ações trabalhistas.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="mb-16">
+            <div class="bg-blue-50 rounded-lg p-8">
+                <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">
+                    🏛️ Baseado em Fontes Oficiais
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="flex items-start space-x-3">
+                        <div class="text-2xl">📚</div>
+                        <div>
+                            <h4 class="font-semibold">CLT Oficial do Senado</h4>
+                            <p class="text-gray-600 text-sm">
+                                Acesso direto ao PDF oficial da Consolidação das Leis do Trabalho
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-3">
+                        <div class="text-2xl">⚖️</div>
+                        <div>
+                            <h4 class="font-semibold">Jurisprudência TST</h4>
+                            <p class="text-gray-600 text-sm">
+                                Súmulas e decisões do Tribunal Superior do Trabalho
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-3">
+                        <div class="text-2xl">📊</div>
+                        <div>
+                            <h4 class="font-semibold">Cálculos Precisos</h4>
+                            <p class="text-gray-600 text-sm">
+                                Fórmulas baseadas na legislação trabalhista vigente
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-3">
+                        <div class="text-2xl">🔄</div>
+                        <div>
+                            <h4 class="font-semibold">Sempre Atualizado</h4>
+                            <p class="text-gray-600 text-sm">
+                                Informações atualizadas conforme mudanças na legislação
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="text-center">
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-8">
+                <h2 class="text-3xl font-bold mb-4">
+                    Pronto para Esclarecer suas Dúvidas?
+                </h2>
+                <p class="text-lg mb-6">
+                    Clique no chat no canto inferior direito e comece sua consulta agora mesmo!
+                </p>
+                <div class="flex justify-center space-x-4 text-sm">
+                    <span class="bg-white/20 px-3 py-1 rounded-full">✅ Gratuito</span>
+                    <span class="bg-white/20 px-3 py-1 rounded-full">✅ Instantâneo</span>
+                    <span class="bg-white/20 px-3 py-1 rounded-full">✅ Baseado na CLT</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-4">
+                <strong>Dr. CLT - Advogado Trabalhista Virtual</strong>
+            </p>
+            <p class="text-gray-400 text-sm mb-4">
+                Consultoria baseada na CLT oficial do Senado Federal e jurisprudência do TST
+            </p>
+            <div class="text-xs text-gray-500">
+                <p class="mb-2">
+                    ⚠️ <strong>Importante:</strong> Este é um assistente virtual para orientação geral. 
+                    Para casos específicos e representação judicial, consulte um advogado habilitado na OAB.
+                </p>
+                <p>
+                    📚 Fontes: CLT (Decreto-Lei 5.452/1943), TST, Senado Federal
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Parlant Chat Widget -->
+    <div class="chat-container">
+        <div id="parlant-chat" class="floating-chat"></div>
+    </div>
+
+    <script>
+        // Configuração do Parlant Chat
+        const { ParlantChatbox } = window.ParlantChatReact;
+        
+        // Renderizar o componente de chat
+        ReactDOM.render(
+            React.createElement(ParlantChatbox, {
+                agentId: "dr-clt-agent", // ID do agente que será criado
+                server: "http://localhost:8800", // URL do servidor Parlant
+                float: true,
+                popupButton: React.createElement('button', {
+                    style: {
+                        backgroundColor: '#4F46E5',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '50%',
+                        width: '60px',
+                        height: '60px',
+                        fontSize: '24px',
+                        cursor: 'pointer',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+                        transition: 'all 0.3s ease'
+                    },
+                    onMouseOver: function(e) {
+                        e.target.style.transform = 'scale(1.1)';
+                        e.target.style.backgroundColor = '#3730A3';
+                    },
+                    onMouseOut: function(e) {
+                        e.target.style.transform = 'scale(1)';
+                        e.target.style.backgroundColor = '#4F46E5';
+                    }
+                }, '⚖️')
+            }),
+            document.getElementById('parlant-chat')
+        );
+
+        // Adicionar animação de pulso ao botão do chat
+        const chatButton = document.querySelector('#parlant-chat button');
+        if (chatButton) {
+            setInterval(() => {
+                chatButton.style.animation = 'pulse 2s infinite';
+            }, 5000);
+        }
+
+        // CSS para animação de pulso
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Health Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .status {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+        
+        .success {
+            color: #4ade80;
+        }
+        
+        .error {
+            color: #f87171;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏥 Teste do Health Assistant</h1>
+    
+    <div class="status">
+        <h2>Status do Servidor</h2>
+        <p id="server-status">Verificando...</p>
+    </div>
+
+    <div class="status">
+        <h2>Instruções</h2>
+        <p>O botão de chat deve aparecer no <strong>canto inferior direito</strong> da página.</p>
+        <p>Se não estiver visível, verifique o console do navegador (F12) para erros.</p>
+    </div>
+
+    <script>
+        // Testar conexão com o servidor
+        fetch('http://localhost:8800/')
+            .then(response => {
+                document.getElementById('server-status').innerHTML = 
+                    '<span class="success">✅ Servidor conectado na porta 8800</span>';
+            })
+            .catch(error => {
+                document.getElementById('server-status').innerHTML = 
+                    '<span class="error">❌ Erro ao conectar com servidor: ' + error + '</span>';
+            });
+    </script>
+</body>
+</html>
