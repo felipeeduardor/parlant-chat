@@ -20,10 +20,4 @@
       "dest": "/advogado_trabalhista.py"
     }
   ],
-  "env": {
-    "PYTHONPATH": ".",
-    "SUPABASE_URL": "@supabase_url",
-    "SUPABASE_KEY": "@supabase_key",
-    "OPENAI_API_KEY": "@openai_api_key"
-  }
 }
