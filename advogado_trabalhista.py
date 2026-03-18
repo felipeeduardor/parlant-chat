@@ -416,7 +416,8 @@ async def main():
     # Carregar variáveis de ambiente
     load_dotenv(override=True)
     
-    async with Server(port=8802, tool_service_port=8820) as server:
+    port = int(os.environ.get("PORT", 8802))
+    async with Server(port=port, tool_service_port=8820) as server:
         # Criar o agente Dr. CLT
         agent = await server.create_agent(
             name="Dr. CLT - Advogado Trabalhista Virtual",
