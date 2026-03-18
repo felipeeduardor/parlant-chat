@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 import json
 from dotenv import load_dotenv
 
-from parlant.sdk import Server, CompositionMode, tool, ToolContext, ToolResult
+from parlant.sdk import Server, CompositionMode, tool, ToolContext, ToolResult, NLPServices
 from supabase_config import log_consulta_clt, log_calculo_rescisao
 
 # Carregar variáveis de ambiente
@@ -417,7 +417,7 @@ async def main():
     load_dotenv(override=True)
     
     port = int(os.environ.get("PORT", 8802))
-    async with Server(port=port, tool_service_port=8820) as server:
+    async with Server(port=port, tool_service_port=8820, nlp_service=NLPServices.openai) as server:
         # Criar o agente Dr. CLT
         agent = await server.create_agent(
             name="Dr. CLT - Advogado Trabalhista Virtual",
