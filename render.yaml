@@ -3,7 +3,7 @@ services:
     name: parlant-chat
     env: python
     pythonVersion: "3.11.0"
-    buildCommand: pip install -r requirements.txt
+    buildCommand: "CARGO_HOME=/tmp/cargo pip install -r requirements.txt"
     startCommand: python advogado_trabalhista.py
     envVars:
       - key: SUPABASE_URL
