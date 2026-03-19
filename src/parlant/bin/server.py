@@ -983,13 +983,9 @@ async def start_parlant(params: StartupParameters) -> AsyncIterator[Container]:
         )
 
     async with load_app(params) as (app, container):
+        serve_task = asyncio.create_task(serve_app(container, app, params.port))
         yield container
-
-        await serve_app(
-            container,
-            app,
-            params.port,
-        )
+        await serve_task
 
 
 def main() -> None:
