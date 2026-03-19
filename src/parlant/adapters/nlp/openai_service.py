@@ -95,14 +95,11 @@ class OpenAISchematicGenerator(SchematicGenerator[T]):
         self.model_name = model_name
         self._logger = logger
 
-        # Resolver conflito de variáveis de ambiente
-        if 'OPENAI_API_KEY' in os.environ:
-            del os.environ['OPENAI_API_KEY']
-        load_dotenv(override=True)
-        
+        load_dotenv()
+
         api_key = os.getenv('OPENAI_API_KEY')
         if not api_key:
-            raise ValueError("OPENAI_API_KEY não encontrada no arquivo .env")
+            raise ValueError("OPENAI_API_KEY não encontrada no arquivo .env ou variáveis de ambiente")
         
         self._client = AsyncClient(api_key=api_key)
 
@@ -306,14 +303,11 @@ class OpenAIEmbedder(Embedder):
 
         self._logger = logger
         
-        # Resolver conflito de variáveis de ambiente
-        if 'OPENAI_API_KEY' in os.environ:
-            del os.environ['OPENAI_API_KEY']
-        load_dotenv(override=True)
-        
+        load_dotenv()
+
         api_key = os.getenv('OPENAI_API_KEY')
         if not api_key:
-            raise ValueError("OPENAI_API_KEY não encontrada no arquivo .env")
+            raise ValueError("OPENAI_API_KEY não encontrada no arquivo .env ou variáveis de ambiente")
         
         self._client = AsyncClient(api_key=api_key)
         self._tokenizer = OpenAIEstimatingTokenizer(model_name=self.model_name)
@@ -396,14 +390,11 @@ class OpenAIModerationService(ModerationService):
         self.model_name = model_name
         self._logger = logger
 
-        # Resolver conflito de variáveis de ambiente
-        if 'OPENAI_API_KEY' in os.environ:
-            del os.environ['OPENAI_API_KEY']
-        load_dotenv(override=True)
-        
+        load_dotenv()
+
         api_key = os.getenv('OPENAI_API_KEY')
         if not api_key:
-            raise ValueError("OPENAI_API_KEY não encontrada no arquivo .env")
+            raise ValueError("OPENAI_API_KEY não encontrada no arquivo .env ou variáveis de ambiente")
         
         self._client = AsyncClient(api_key=api_key)
 
